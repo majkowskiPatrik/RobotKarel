@@ -1,0 +1,29 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<%= "main_screen.html" %>
+
+<script type="text/javascript">
+  var i = 0;
+  $(document).ready(function() {
+      $('#but1').click(function() {
+        $.ajax( {
+            url: "tick",
+            data: "NeCo"
+          }
+        )
+      });
+
+      $('#but2').click(function() {
+        $('#myDiv').load('/game/render_simarea');
+      });
+    });
+</script>
+<br/>
+<div id="myDiv">
+
+</div>
+<button id="but1">Tick</button><br/>
+<button id="but2">Refresh AJAX data</button><br/>
