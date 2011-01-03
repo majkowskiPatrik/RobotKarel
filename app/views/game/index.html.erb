@@ -14,15 +14,17 @@
     <th>Výška</th>
     <th>Počet actorů</th>
     <th>Odkaz</th>
+    <th>Vymazat</th>
   </tr>
   <% index = 0 %>
   <% @simareas.each do |simarea| %>   
     <tr>
       <td><%= simarea.name %></td>
-      <td><%= simarea.width %></td>
-      <td><%= simarea.height %></td>
+      <td><%= simarea.dimensions.x %></td>
+      <td><%= simarea.dimensions.y %></td>
       <td><%= simarea.actors.length %></td>
-      <td><%= button_to "Vybrat", { :action => "connect", :id => index } %> </td>
+      <td><%= button_to "Vybrat", { :action => "connect", :index => index } %> </td>
+      <td><%= button_to "Vymazat", { :action => "destroy", :index => index } %> </td>
     </tr>
   <% index = index + 1 %>
   <% end %>

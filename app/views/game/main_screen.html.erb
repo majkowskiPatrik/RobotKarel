@@ -6,24 +6,61 @@
 <%= "main_screen.html" %>
 
 <script type="text/javascript">
-  var i = 0;
   $(document).ready(function() {
+      function moveActors() {
+        $.ajax( {
+            url: "move_actors",
+            data: null
+          }
+        )
+      }
+
+      function renderSimarea() {
+        $('#myDiv').load('/game/render_simarea');
+      }
+
+      $('#but2').click(function() {
+        renderSimarea();
+      });
+
       $('#but1').click(function() {
         $.ajax( {
-            url: "tick",
-            data: "NeCo"
+            url: "create_actor",
+            data: ({name : $('#name_textbox').val(),
+                    posx : $('#posx_textbox').val(),
+                    posy : $('#posy_textbox').val()
+                  })
           }
         )
       });
 
-      $('#but2').click(function() {
-        $('#myDiv').load('/game/render_simarea');
+      $('#but3').click(function() {
+        moveActors();
       });
+
+      $(this).everyTime(1000, function() {$('#but2').click();})
+
+      renderSimarea();
     });
 </script>
 <br/>
 <div id="myDiv">
-
 </div>
-<button id="but1">Tick</button><br/>
+
+<h1>Vytvořit actora</h1>
+<table>
+  <tr>
+    <th>Název</th>
+    <th>Pozice X</th>
+    <th>Pozice Y</th>
+  </tr>
+  <tr>
+    <td><input type="textbox" value="Zadej jmeno" id="name_textbox"></input></td>
+    <td><input type="textbox" value="0" id="posx_textbox"></input></td>
+    <td><input type="textbox" value="0" id="posy_textbox"></input></td>
+  </tr>
+</table>
+
+<button id="but1">Zalozit actora</button><br/>
 <button id="but2">Refresh AJAX data</button><br/>
+<button id="but3">Pohnout actory</button><br/>

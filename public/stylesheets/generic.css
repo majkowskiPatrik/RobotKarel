@@ -1,0 +1,33 @@
+/* 
+    Document   : generic
+    Created on : 28.12.2010, 18:19:19
+    Author     : WerK
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#menu {
+    width: 150px;
+    float: left;
+}
+
+#main {
+    float: left;
+}
+
+.occupied_box {
+    width: 52px;
+    height: 52px;
+}
+
+.unoccupied_box {
+    width: 52px;
+    height: 52px;
+}
+
+

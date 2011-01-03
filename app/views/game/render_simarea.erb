@@ -4,12 +4,24 @@
 %>
 
 <%= "render_simarea" %>
+<%= @simarea.dimensions.x %>
+<%= @simarea.dimensions.y %>
 
 <table border="true">
-  <% for y in 0..@simarea.height %>
+  <% for y in 0..@simarea.dimensions.y %>
   <tr>
-    <% for x in 0..@simarea.width %>
-    <td>X</td>
+    <% for x in 0..@simarea.dimensions.x %>
+      <% actor = @simarea.get_field(Vector2.new(x,y)) %>
+      <% if (actor.class.name == "Robot") %>
+        <% filename_prefix = "robot-" %>
+        <% filename_postfix = ".jpg" %>
+        <% filename = filename_prefix + actor.direction.to_s + filename_postfix %>
+        <td class="occupied_box"><%= image_tag filename %></td>
+      <% end %>
+        
+      <% if (actor.nil?) %>
+        <td class="unoccupied_box"></td>
+      <% end %>
     <% end %>
   </tr>
   <% end %>

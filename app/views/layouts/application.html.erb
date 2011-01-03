@@ -13,7 +13,26 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="flash">
+    <% if flash[:notice] %>
+      <p style="color:green"><%= flash[:notice] %></p>
+    <% end %>
+
+    <% if flash[:error] %>
+      <p style="color:red"><%= flash[:error] %></p>
+    <% end %>
+  </div>
+
+  <div id="menu">
+    <ul>
+      <li><a href="/game/index">Index her</a></li>
+      <li><a href="/game/destroy_manager">Reinicializovat Manager</a></li>
+    </ul>
+  </div>
+
+  <div id="main">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
