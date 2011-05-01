@@ -93,10 +93,12 @@ class MapsController < ApplicationController
   # GET maps/1/get_map
   def get_map
     @map = Map.find(params[:id])
+    p @map.data
+
 
     respond_to do |format|
       format.json { 
-        render :json => { :data => @map.data }.to_json
+        render :json => { :data => @map.data }
       }
     end
   end
