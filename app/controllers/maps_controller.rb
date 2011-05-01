@@ -40,6 +40,7 @@ class MapsController < ApplicationController
     valid = true
     @map = nil
     begin
+      valid = false if params[:size] == ""
       size = params[:size].to_i
       valid = false if (size < 0) || (size > 30)
     rescue Exception => e
