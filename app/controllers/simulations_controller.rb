@@ -187,17 +187,15 @@ class SimulationsController < ApplicationController
   def get_story
     story = []
     simulation_steps = Simulation.find_by_id(params[:id]).simulation_steps
+    simulation_steps.sort! { |a,b| a.step_no <=> b.step_no }
+
     simulation_steps.each do |ss|
       story << JSON.parse(ss.data_json)
     end
 
     story_json = story.to_json
 
-    respond_to do |format|
-      format.json {
-        render :json => { :data => story_json }
-      }
-    end
+    render :json => { :data => story_json }
   end
 
   def watch
