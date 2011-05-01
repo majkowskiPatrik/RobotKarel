@@ -1,4 +1,26 @@
 RobotKarel::Application.routes.draw do
+  resources :actors
+
+  resources :simulations
+
+  resources :maps
+
+  resources :users
+
+  match 'maps/:id/get_map' => 'maps#get_map'
+  match 'maps/:id/save_map' => 'maps#save_map'
+  match 'simulations/:simulation_id/get_map' => 'simulations#get_map'
+  match 'simulations/:id/place_actors' => 'simulation#place_actors'
+  match 'simulations/:id/save_sim' => 'simulations#save_sim'
+  match 'simulations/:id/:count/simulate' => 'simulations#simulate'
+  match 'simulations/:id/get_story' => 'simulations#get_story'
+  match 'simulations/:id/watch' => 'simulations#watch'
+  match 'simulations/:id/get_initial_state' => 'simulations#get_initial_state'
+  match 'simulations/:id/get_actors' => 'simulations#get_actors'
+  match 'actors/:id/get_source_code' => 'actors#get_source_code'
+
+
+
 
   # match 'test/lol' => 'test#lol'
   # The priority is based upon order of creation:

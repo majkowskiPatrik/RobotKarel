@@ -1,0 +1,20 @@
+<%= javascript_include_tag 'map-editor' %>
+<%= javascript_include_tag 'jquery-ui-1.8.10.custom.min' %>
+<%= javascript_include_tag 'json2' %>
+<%= javascript_include_tag 'jquery.contextmenu.r2.packed' %>
+
+<h1>Map Editor</h1>
+
+<%= render 'canvas' %>
+
+<script type="text/javascript">
+    map_id = <%= @map.id %>;
+    load_map();
+</script>
+
+<div class="contextMenu" id="toolSelectMenu">
+      <ul>
+        <li id="wall">Select brush wall</li>
+        <li id="eraser">Select eraser</li>
+      </ul>
+</div>

@@ -1,0 +1,23 @@
+<h1>Listing maps</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @maps.each do |map| %>
+  <tr>
+    <td><%= map.name %></td>
+    <td><%= link_to 'Show', map %></td>
+    <td><%= link_to 'Edit', edit_map_path(map) %></td>
+    <td><%= link_to 'Destroy', :controller => "maps", :action => "destroy_it", :id => map.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Map', new_map_path %>

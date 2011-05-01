@@ -10,17 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101108161148) do
+ActiveRecord::Schema.define(:version => 20110407090431) do
 
-  create_table "comments", :force => true do |t|
+  create_table "actors", :force => true do |t|
     t.string   "name"
-    t.text     "body"
+    t.text     "source_code"
+    t.text     "static_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tests", :force => true do |t|
+  create_table "maps", :force => true do |t|
     t.string   "name"
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "simulation_steps", :force => true do |t|
+    t.integer  "simulation_id"
+    t.text     "data_json"
+    t.integer  "step_no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "simulations", :force => true do |t|
+    t.string   "name"
+    t.text     "map_json"
+    t.text     "actors_json"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,28 @@
+<%= form_for(@simulation) do |f| %>
+  <% if @simulation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@simulation.errors.count, "error") %> prohibited this simulation from being saved:</h2>
+
+      <ul>
+      <% @simulation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    Map template
+    <%= select "map", "map_id", @maps.map {|u| [u.name,u.id]} %>
+  </div>
+<div class="field">
+  Immediately place actors ? <%= check_box_tag 'place_actors', 'yes', true %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

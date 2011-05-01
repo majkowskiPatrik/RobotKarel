@@ -1,0 +1,64 @@
+<%= javascript_include_tag 'map-placer' %>
+<%= javascript_include_tag 'jquery.contextmenu.r2.packed' %>
+<%= javascript_include_tag 'jquery.simplemodal-1.4.1' %>
+<%= stylesheet_link_tag 'modal' %>
+
+<h1>Please select initial actor positions</h1>
+<%= render 'canvas' %>
+
+<script type="text/javascript">
+    sim_id = <%= @simulation.id %>;
+    load_map_for_sim();
+    
+</script>
+
+<div class="contextMenu" id="placeActorMenu">
+      <ul>
+        <li id="place">Place actor here</li>
+        <li id="place_marker">Place marker here</li>
+        <li id="remove">Remove actor</li>
+        <li id="remove_marker">Remove marker</li>
+        <li id="edit">Edit actor</li>
+        <li id="save">Save</li>
+      </ul>
+</div>
+
+<div class="contextMenu" id="actor-prop-content">
+  <div id="prop-box">
+  <h3>Actor properties</h3>
+  <table>
+    <tr><td>Name</td><td><input id="actor_name" type="text" name="actor_name"></input></td></tr>
+    <tr><td>Direction</td><td><%= select_tag "actor_direction", options_for_select([["Left", "left"], ["Down", "down"], ["Up", "up"], ["Right", "right"]]) %></td></tr>
+    <tr><td>Template</td><td><%= select "actor", "id", @actors.map {|u| [u.name,u.id]} %></td></tr>
+  </table>
+  <input id="place_btn" type="button" name="place" value="Place"></input>
+  </div>
+  <div id="left-box">
+  <h3>Source</h3>
+  <textarea id="src_preview_textarea" cols="40" rows="24"></textarea>
+  </div>
+  <div id="right-box">
+  <h3>Static source</h3>
+  <textarea id="sta_preview_textarea" cols="40" rows="24"></textarea>
+  </div>
+</div>
+
+<div class="contextMenu" id="actor-edit-content">
+  <div id="edit-box">
+  <h3>Actor properties</h3>
+  <table>
+    <tr><td>Name</td><td><input id="edit_actor_name" type="text" name="actor_name"></input></td></tr>
+    <tr><td>Direction</td><td><%= select_tag "edit_actor_direction", options_for_select([["Left", "left"], ["Down", "down"], ["Up", "up"], ["Right", "right"]]) %></td></tr>
+  </table>
+  <input id="edit_btn" type="button" name="place" value="Save"></input>
+  </div>
+  <div id="left-box">
+  <h3>Source</h3>
+  <textarea id="src_edit_textarea" cols="40" rows="24"></textarea>
+  </div>
+  <div id="right-box">
+  <h3>Static source</h3>
+  <textarea id="sta_edit_textarea" cols="40" rows="24"></textarea>
+  </div>
+</div>
+

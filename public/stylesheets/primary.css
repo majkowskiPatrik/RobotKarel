@@ -1,0 +1,25 @@
+#menu {
+    float:left;
+
+}
+#main {
+    float:left;
+}
+
+#player-canvas {
+    float:left;
+
+}
+#player-tools {
+    float:left;
+}
+
+.step-textbox {
+    width: 30px;
+}
+
+#source-show-content {
+    width: 640px;
+    height: 480px;
+}
+

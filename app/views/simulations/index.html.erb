@@ -1,0 +1,29 @@
+<h1>Listing simulations</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Computed step count</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @simulations.each do |simulation| %>
+  <tr>
+    <td><%= simulation.name %></td>
+    <td><%= simulation.simulation_steps.length %></td>
+    <td><%= link_to 'Simulate 50', :controller => "simulations", :action => "simulate", :id => simulation.id, :count => 10 %></td>
+    <td><%= link_to 'Simulate 100', :controller => "simulations", :action => "simulate", :id => simulation.id, :count => 100 %></td>
+    <td><%= link_to 'Simulate 200', :controller => "simulations", :action => "simulate", :id => simulation.id, :count => 200 %></td>
+    <td><%= link_to 'Edit actors', :controller => "simulations", :action => "place_actors", :id => simulation.id %></td>
+    <td><%= link_to 'Watch', :controller => "simulations", :action => "watch", :id => simulation.id %></td>
+    <td><%= link_to 'Destroy', :controller => "simulations", :action => "destroy_it", :id => simulation.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Simulation', new_simulation_path %>
