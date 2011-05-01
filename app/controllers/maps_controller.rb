@@ -108,7 +108,12 @@ class MapsController < ApplicationController
     @map.data = params[:_json].to_json
     p @map.data
     @map.save()
-    render :nothing => true
+    respond_to do |format|
+      format.json{
+        render :json => "DATAZ"
+      }
+    end
+
   end
   
 end

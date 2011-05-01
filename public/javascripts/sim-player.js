@@ -21,7 +21,6 @@ function load_story() {
             url: "/simulations/"+sim_id+"/get_story",
             success: function(data){
                 story = JSON.parse(data.data);
-                alert(story.length);
                 $("#step_end").val(story.length-1);
                 load_actors();
             }

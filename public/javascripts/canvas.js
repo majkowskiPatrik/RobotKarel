@@ -167,7 +167,6 @@ function load_map(callback) {
   $.ajax({
             url: "/maps/"+map_id+"/get_map",
             success: function(data){
-                alert(data.data);
                 map = JSON.parse(data.data);
                 initMap();
                 drawMap();
