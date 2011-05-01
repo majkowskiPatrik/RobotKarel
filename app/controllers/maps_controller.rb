@@ -103,10 +103,10 @@ class MapsController < ApplicationController
 
   def save_map
     p "!!!!!!!!!!!!! SAVE MAP !!!!!!! data follows"
-    p "params[:_json] -> " + params[:_json].to_s
+    p params[:_json]
     p "!!!!!!!"
     @map = Map.find(params[:id])
-    @map.data = params[:_json].to_s.gsub("nil", "null");
+    @map.data = params[:_json]
     p @map.data
     @map.save()
 
