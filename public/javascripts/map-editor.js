@@ -25,15 +25,18 @@ function canvasClickHandler(e) {
 function save_map() {
     if (!saved) {
         var mapJSON = JSON.stringify(map);
+        alert(mapJSON);
         $.ajax({
             url: "/maps/"+map_id+"/save_map",
             data: mapJSON,
             type: "POST",
             dataType: "json",
-            contentType: "application/json; charset=utf-8"
+            contentType: "application/json; charset=utf-8",
+            success: function() {
+                alert("Map saved");
+            }
         });
         saved = true;
-        alert("Map saved");
     }
 }
 
@@ -50,6 +53,9 @@ $(document).ready(function() {
         },
         'eraser': function(t) {
             tool = "eraser";
+        },
+        'save' : function(t) {
+            save_map();
         }
       },
 
