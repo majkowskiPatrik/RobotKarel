@@ -2,8 +2,8 @@ class CreateActors < ActiveRecord::Migration
   def self.up
     create_table :actors do |t|
       t.string :name
-      t.text :source_code
-      t.text :static_code
+      t.binary :source_code
+      t.binary :static_code
 
       t.timestamps
     end

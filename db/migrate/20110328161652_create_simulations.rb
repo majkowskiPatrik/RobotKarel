@@ -2,8 +2,8 @@ class CreateSimulations < ActiveRecord::Migration
   def self.up
     create_table :simulations do |t|
       t.string :name
-      t.text :map_json
-      t.text :actors_json
+      t.binary :map_json
+      t.binary :actors_json
 
       t.timestamps
     end

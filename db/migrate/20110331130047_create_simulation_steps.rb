@@ -2,7 +2,7 @@ class CreateSimulationSteps < ActiveRecord::Migration
   def self.up
     create_table :simulation_steps do |t|
       t.integer :simulation_id
-      t.text :data_json
+      t.binary :data_json
       t.integer :step_no
 
       t.timestamps

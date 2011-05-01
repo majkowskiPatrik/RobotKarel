@@ -14,22 +14,22 @@ ActiveRecord::Schema.define(:version => 20110407090431) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
-    t.text     "source_code"
-    t.text     "static_code"
+    t.binary   "source_code"
+    t.binary   "static_code"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "maps", :force => true do |t|
     t.string   "name"
-    t.text     "data"
+    t.binary   "data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "simulation_steps", :force => true do |t|
     t.integer  "simulation_id"
-    t.text     "data_json"
+    t.binary   "data_json"
     t.integer  "step_no"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -37,8 +37,8 @@ ActiveRecord::Schema.define(:version => 20110407090431) do
 
   create_table "simulations", :force => true do |t|
     t.string   "name"
-    t.text     "map_json"
-    t.text     "actors_json"
+    t.binary   "map_json"
+    t.binary   "actors_json"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
