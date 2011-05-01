@@ -92,7 +92,7 @@ class MapsController < ApplicationController
 
   # GET maps/1/get_map
   def get_map
-    map = Map.find(params[:id])
+    @map = Map.find(params[:id])
 
     respond_to do |format|
       format.json { 
@@ -103,10 +103,12 @@ class MapsController < ApplicationController
 
   def save_map
     p "!!!!!!!!!!!!! SAVE MAP !!!!!!! data follows"
-    p params
-    map = Map.find(params[:id])
-    map.data = params[:_json].to_s.gsub("nil", "null");
-    map.save()
+    p "params[:_json] -> " + params[:_json]
+    p "!!!!!!!"
+    @map = Map.find(params[:id])
+    @map.data = params[:_json].to_s.gsub("nil", "null");
+    p @map.data
+    @map.save()
 
     render :nothing => true
   end
