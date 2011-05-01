@@ -102,6 +102,7 @@ class MapsController < ApplicationController
   end
 
   def save_map
+    p "!!!!!!!!!!!!! SAVE MAP !!!!!!!"
     map = Map.find(params[:id])
     map.data = params[:_json].to_s.gsub("nil", "null");
     map.save()
