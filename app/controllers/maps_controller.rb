@@ -96,7 +96,7 @@ class MapsController < ApplicationController
 
     respond_to do |format|
       format.json { 
-        render :json => { :data => map.data }.to_json
+        render :json => { :data => @map.data }.to_json
       }
     end
   end
