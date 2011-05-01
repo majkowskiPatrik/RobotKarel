@@ -172,7 +172,15 @@ class SimulationsController < ApplicationController
       render :action => "index", :locals => { :simulations => @simulations }
     end
 
-    @simulation.simulate(JSON.parse(@simulation.actors_json), JSON.parse(@simulation.simulation_steps.first.data_json), JSON.parse(@simulation.map_json), Integer(params[:count]))
+    first_step = nil
+    @simulation.simulation_steps.each do |step|
+      if step.step_no == 0
+        first_step = step
+        break
+      end
+    end
+
+    @simulation.simulate(JSON.parse(@simulation.actors_json), JSON.parse(first_step.data_json), JSON.parse(@simulation.map_json), Integer(params[:count]))
     render :text => "OK"
   end
 
