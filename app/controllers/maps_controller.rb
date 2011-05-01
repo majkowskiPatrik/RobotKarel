@@ -94,27 +94,14 @@ class MapsController < ApplicationController
   # GET maps/1/get_map
   def get_map
     @map = Map.find(params[:id])
-    p @map.data
-
-
-    respond_to do |format|
-      format.json { 
-        render :json => { :data => @map.data }
-      }
-    end
+    render :json => { :data => @map.data }
   end
 
   def save_map    
     @map = Map.find(params[:id])
     @map.data = params[:_json].to_json
-    p @map.data
     @map.save()
-    respond_to do |format|
-      format.json{
-        render :json => "DATAZ"
-      }
-    end
-
+    render :text => "OK"
   end
   
 end

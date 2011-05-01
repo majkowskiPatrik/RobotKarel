@@ -30,7 +30,7 @@ function save_map() {
             data: mapJSON,
             type: "POST",
             dataType: "json",
-            contentType: "application/json; charset=utf-8"
+            contentType: "application/json; charset=utf-8",
         });
         saved = true;
         alert("Map saved");

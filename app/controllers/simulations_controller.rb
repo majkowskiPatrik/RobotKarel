@@ -173,7 +173,7 @@ class SimulationsController < ApplicationController
     end
 
     @simulation.simulate(JSON.parse(@simulation.actors_json), JSON.parse(@simulation.simulation_steps.first.data_json), JSON.parse(@simulation.map_json), Integer(params[:count]))
-    render :action => "watch", :id => params[:id]
+    render :text => "OK"
   end
 
   def get_story
