@@ -1,3 +1,5 @@
+require 'json'
+
 class SimulationsController < ApplicationController
   # GET /simulations
   # GET /simulations.xml
