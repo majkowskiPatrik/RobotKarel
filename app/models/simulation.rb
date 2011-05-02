@@ -1,23 +1,65 @@
+class Blacklist
+  def initialize
+    # Initialize banned words
+    @blacklist = ["@actor", "@blacklist", "Blacklist", "Evaluator", "@source_code", "@static_code" ,"eval", "evaluate", "evaluate_static", "@static_code_errors", "@source_code_errors", "exit"]
+  end
+
+  def check(source_code)
+    tokens = source_code.split(" ")
+    errors = [];
+
+    tokens.each do |token|
+      @blacklist.each do |banned_word|
+        if (token.include?(banned_word))
+          errors.push << banned_word
+        end
+      end
+    end
+
+    return errors
+  end
+end
+
+
 class Evaluator
   def initialize(source_code, static_code, actor)
+    blacklist = Blacklist.new()
     @source_code = source_code
     @static_code = static_code
+    @source_code_errors = blacklist.check(source_code)
+    @static_code_errors = blacklist.check(static_code)
     @actor = actor
   end
 
   def evaluate
     begin
+      if (@source_code_errors) != []
+        msg = "Blacklisted words detected: "
+        @source_code_errors.each do |error|
+          msg = msg + error + " "
+        end
+        raise SyntaxError.new(msg)
+      end
+
       eval(@source_code)
     rescue Exception => e
-      log("cannot evaluate source code because : " + e.message)
+      log("Cannot evaluate source code because : " + e.message)
     end
   end
 
   def evaluate_static
     begin
+      if (@static_code_errors) != []
+        msg = "Blacklisted words detected: "
+        @static_code_errors.each do |error|
+          msg = msg + error + " "
+        end
+        raise SyntaxError.new(msg)
+      end
+
       eval(@static_code)
     rescue Exception => e
-      log("cannot evaluate static code because : " + e.message)
+      log("Cannot evaluate static code because : " + e.message)
     end
   end
 
@@ -93,8 +135,20 @@ class ActorImpl
   end
 
   def move
-    if move_possible?
+    reason = @simulation.move_possible?(@position, @direction)
+    if reason == true
       set_state("move", true)
+    else
+      log("Cannot perform move() because: " + reason)
+    end
+  end
+
+  def move_possible?
+    reason = @simulation.move_possible?(@position, @direction)
+    if reason == true
+      return true
+    else
+      return false
     end
   end
 
@@ -132,16 +186,6 @@ class ActorImpl
 
   def get_direction
     return self.direction
-  end
-
-  def move_possible?
-    value = @simulation.move_possible?(@position, @direction)
-    if value == true
-      return true
-    else
-      #log(value)
-      return false
-    end
   end
 
   def marker_present?
@@ -182,7 +226,6 @@ class MarkerImpl
   end
 
   def move
-    p "marker move, actor: " + @actor.to_s
     if !@actor.nil?
       @position = @actor.position
     end
@@ -402,8 +445,6 @@ class Simulation < ActiveRecord::Base
         step.destroy()
     end
 
-
-
     # Create a new step containing initial_state
     step = SimulationStep.new()
     step.step_no = 0
@@ -432,8 +473,20 @@ class Simulation < ActiveRecord::Base
           
           # Drop marker if required
           if actor_impl.get_state("drop")
-            actor_impl.marker.actor = nil
-            actor_impl.marker = nil
+            # Check for number of markers at this location before dropping
+            count = 0
+            @marker_impls.each do |marker|
+              if (marker.position.equals?(actor_impl.position))
+                count = count + 1
+              end
+            end
+
+            if (count >= 5) # 5 Because marker that actor is already carrying gets counted also
+              actor_impl.log("Cannot drop marker, field already contains maximum number of markers")
+            else
+              actor_impl.marker.actor = nil
+              actor_impl.marker = nil
+            end
           end
           
           # Handle movement

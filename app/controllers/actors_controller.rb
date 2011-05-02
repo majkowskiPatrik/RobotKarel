@@ -71,7 +71,7 @@ class ActorsController < ApplicationController
 
   # DELETE /actors/1
   # DELETE /actors/1.xml
-  def destroy
+  def destroy_it
     @actor = Actor.find(params[:id])
     @actor.destroy
 
@@ -82,18 +82,14 @@ class ActorsController < ApplicationController
   end
 
 
-  def get_source_code
+  def get_properties
     actor = Actor.find_by_id(params[:id])
     data = {}
     data["source_code"] = actor.source_code
     data["static_code"] = actor.static_code
+    data["description"] = actor.description
 
-    respond_to do |format|
-      format.json {
-        render :json => { :data => data.to_json }
-      }
-    end
-    
+    render :json => { :data => data.to_json }
   end
 
 

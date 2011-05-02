@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'sim-player' %>
+<%= javascript_include_tag 'simulation-player' %>
 <%= javascript_include_tag 'jquery.contextmenu.r2.packed' %>
 <%= javascript_include_tag 'jquery.simplemodal-1.4.1' %>
 <%= stylesheet_link_tag 'modal' %>
@@ -12,13 +12,15 @@
 <div id="player-canvas">
 <h1>Watching simulation: <%= @simulation.name %></h1>
 <%= render 'canvas' %>
+<%= link_to 'Back', simulations_path %> |
+<%= link_to 'Edit actors', :action => "edit_actors", :id => @simulation.id %>
 </div>
 
 <div id="player-tools">
 <h1>Messages</h1>
-<textarea id="messages_textarea" cols="40" rows="24" readonly="true"></textarea><br />
+<%= text_area_tag "messages_textarea", nil, { :size => "40x24", :disabled => true } %><br />
 <h1>Playback control</h1>
-Step<input id="step_ctrl" class="step-textbox" type="text"></input> of <input class="step-textbox" id="step_end" type="text" readonly="true" ></input>
+Step<%= number_field_tag 'step_ctrl', nil, :class => "step-textbox" %> of <%= number_field_tag 'step_end', nil, :class => "step-textbox" %>
 <input id="btn_step_up" type="button" value="+"></input><input id="btn_step_down" type="button" name="btn" value="-"></input><input id="btn_simulate" type="button" name="btn" value="Simulate..."></input><br />
 <input id="chk_autoplay" type="checkbox">AutoPlay</input><br />
 </div>
@@ -32,11 +34,11 @@ Step<input id="step_ctrl" class="step-textbox" type="text"></input> of <input cl
 
 <div class="contextMenu" id="source-show-content">
   <h3 id="src_label">Source</h3>
-  <textarea id="src_textarea" cols="80" rows="24" readonly="true"></textarea>
+  <%= text_area_tag "src_textarea", nil, { :size => "80x24", :disabled => true } %>
 </div>
 
 <div class="contextMenu" id="simulate-content">
   <h3 id="simulate_label">Enter number of steps you want to simulate</h3>
-  <input id="step_count" type="text"></input>
+  <%= number_field_tag "step_count" %>
   <input id="btn_simulate_confirm" type="button" name="btn" value="Simulate"></input>
 </div>

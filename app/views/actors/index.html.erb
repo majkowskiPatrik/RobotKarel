@@ -1,9 +1,9 @@
-<h1>Listing actors</h1>
+<h1>Available actor templates</h1>
 
 <table>
   <tr>
     <th>Name</th>
-    <th>Source code</th>
+    <th>Description</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,10 +12,10 @@
 <% @actors.each do |actor| %>
   <tr>
     <td><%= actor.name %></td>
-    <td><%= actor.source_code %></td>
+    <td><%= actor.description %></td>
     <td><%= link_to 'Show', actor %></td>
     <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
-    <td><%= link_to 'Destroy', actor, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Destroy', :action => "destroy_it", :id => actor.id %></td>
   </tr>
 <% end %>
 </table>

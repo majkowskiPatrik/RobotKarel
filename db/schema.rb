@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(:version => 20110407090431) do
 
   create_table "actors", :force => true do |t|
     t.string   "name"
+    t.string   "description"
     t.binary   "source_code"
     t.binary   "static_code"
     t.datetime "created_at"

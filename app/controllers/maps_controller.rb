@@ -43,6 +43,7 @@ class MapsController < ApplicationController
       valid = false if params[:size] == ""
       size = params[:size].to_i
       valid = false if (size < 0) || (size > 30)
+      valid = false if (params[:map][:name] == "")
     rescue Exception => e
       valid = false
     end

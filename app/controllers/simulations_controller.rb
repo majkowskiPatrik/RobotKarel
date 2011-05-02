@@ -12,26 +12,15 @@ class SimulationsController < ApplicationController
     end
   end
 
-  # GET /simulations/1
-  # GET /simulations/1.xml
-  def show
-    @simulation = Simulation.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @simulation }
-    end
-  end
 
   # GET /simulations/new
   # GET /simulations/new.xml
   def new
     @simulation = Simulation.new
     @maps = Map.all
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @simulation }
+    if @maps == []
+      flash[:notice] = "Cannot create simulation without a map template. Create a map template first";
+      redirect_to :action => "index"
     end
   end
 
@@ -47,19 +36,25 @@ class SimulationsController < ApplicationController
     @simulation = Simulation.new(params[:simulation])
     @simulation.map_json = Map.find_by_id(params[:map][:map_id]).data
 
+    if (params[:simulation][:name] == "")
+      flash[:notice] = "Simulation must have a name."
+      redirect_to :action => "index"
+      return
+    end
+    
     if @simulation.save
       if (params[:place_actors].nil?)
         redirect_to(@simulation, :notice => 'Simulation was successfully created.')
       else
         @actors = Actor.find(:all);
-        render :action => "place_actors", :params => {:id => @simulation.id},  :locals => { :actors => @actors }
+        render :action => "edit_actors", :params => {:id => @simulation.id},  :locals => { :actors => @actors }
       end
     else
       render :action => "new"
     end
   end
 
-  def place_actors
+  def edit_actors
     @actors = Actor.find(:all)
     @simulation = Simulation.find_by_id(params[:id])
   end
@@ -204,7 +199,6 @@ class SimulationsController < ApplicationController
       flash[:notice] = "Cannot simulate unitialized simulation!"
       redirect_to :action => "index"
     end
-    
   end
 
 

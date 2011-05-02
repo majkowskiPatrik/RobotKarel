@@ -8,19 +8,19 @@
 
   <%= javascript_include_tag 'jquery.timers.js' %>
   <%= javascript_include_tag 'rails.js' %>
+  <%= stylesheet_link_tag 'scaffold' %>
   <%= stylesheet_link_tag 'primary' %>
+  <%= stylesheet_link_tag 'menu_style' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
   
-  <div id="menu">
-
-    <ul>
-      <li><a href="/maps">Maps</a></li>
+    <ul id="menu">
+      <li><a href="/help/welcome">Welcome</a></li>
+      <li><a href="/maps">Map templates</a></li>
+      <li><a href="/actors">Actor templates</a></li>
       <li><a href="/simulations">Simulations</a></li>
-      <li><a href="/actors">Actors</a></li>
     </ul>
-  </div>
 
   <div id="main">
     <p id="notice"><%= notice %></p>

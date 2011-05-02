@@ -1,9 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  source_code: MyString
+  name: "Maze solver"
+  description: "This actor can solve simple mazes"
+  source_code: "dir = self.get_directions\r\nspace = \" \"\r\ndir.delete(self.get_direction.get_inverse.to_s)\r\n\r\nlog(\"MyPos: \" + self.get_position.x.to_s + \" \" + self.get_position.y.to_s)\r\n     \r\n# dead end, return same way\r\nif (dir.length == 0)\r\n  self.set_direction(self.get_direction.get_inverse.to_s)\r\nend\r\n\r\nif (dir.length > 1)\r\n  # crossroads\r\n  log(\"XROAD\")\r\n  log(dir.to_s)\r\n  hash = self.get_position.x.to_s + space + self.get_position.y.to_s\r\n  if @myvar[hash].nil?\r\n    # Being visited first time, create object in hash\r\n    dir << self.get_direction.get_inverse.to_s\r\n    dir.delete(self.get_direction.to_s)\r\n\r\n    @myvar[hash] = dir\r\n    log(\"first visit\")\r\n    log(@myvar[hash].to_s)\r\n  else\r\n    # Already visited, take first available direction and use it\r\n    log(\"other visit\")\r\n    log(@myvar[hash].to_s)\r\n\r\n    self.set_direction(@myvar[hash].shift)\r\n\r\n    log(\"after visit\")\r\n    log(@myvar[hash].to_s)\r\n  end\r\nend\r\nif self.move_possible? != true\r\n  dir = self.get_directions\r\n  dir.delete(self.get_direction.get_inverse.to_s)\r\n              \r\n  self.set_direction(dir[0])\r\nend\r\n\r\nmove();"
+  static_code: "@myvar = {}"
 
 two:
-  name: MyString
-  source_code: MyString
+  name: "Basic mover"
+  description: "This actor only moves forward"
+  source_code: "move()"
+  static_code: ""

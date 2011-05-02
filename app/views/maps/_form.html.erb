@@ -12,12 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    Map name<br />
+    <%= f.text_field :name, :class => "small-textbox" %>
   </div>
+
   <div class="field">
-    Edge size
-    <%= text_field_tag :size %><br />
+    Map dimensions (width and height)<br />
+    <%= text_field_tag :size, nil, :class => "small-textbox" %>
   </div>
 
   <div class="actions">

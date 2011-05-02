@@ -3,7 +3,7 @@
 <%= javascript_include_tag 'json2' %>
 <%= javascript_include_tag 'jquery.contextmenu.r2.packed' %>
 
-<h1>Map Editor</h1>
+<h1>Editing map template : <%= @map.name %></h1>
 
 <%= render 'canvas' %>
 
@@ -19,3 +19,5 @@
         <li id="save">Save</li>
       </ul>
 </div>
+
+<%= link_to 'Back', maps_path %>

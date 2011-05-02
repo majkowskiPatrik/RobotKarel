@@ -20,27 +20,73 @@ function drawGrid() {
   cols++;
 
   for (var row = 0 ; row < rows ; row++) {
-    line(OFFSET, OFFSET + row * CELL_SIZE, cols * CELL_SIZE - OFFSET, OFFSET + row * CELL_SIZE);
+    line(
+        OFFSET,
+        OFFSET + row * CELL_SIZE,
+        WIDTH - OFFSET,
+        OFFSET + row * CELL_SIZE
+    );
   }
 
   for (var col = 0 ; col < cols ; col++) {
-    line(OFFSET + col * CELL_SIZE, OFFSET, OFFSET + col * CELL_SIZE, rows * CELL_SIZE - OFFSET);
+    line(
+        OFFSET + col * CELL_SIZE,
+        OFFSET,
+        OFFSET + col * CELL_SIZE,
+        HEIGHT - OFFSET
+    );
   }
 }
 
 function drawActor(actorMapDef, row, col) {
     setCellColor(col, row, "brown");
     if (actorMapDef.direction == "up") {
-        line(OFFSET + col * CELL_SIZE + (CELL_SIZE / 2), OFFSET + row * CELL_SIZE , OFFSET + col * CELL_SIZE + (CELL_SIZE / 2), OFFSET + row * CELL_SIZE + 5)
+        var uLine = 0;
+        for (var i = 1 ; i <= 15 ; i += 2) {
+            line(
+                OFFSET + col * CELL_SIZE + ((CELL_SIZE - i) / 2),
+                OFFSET + row * CELL_SIZE + uLine ,
+                OFFSET + col * CELL_SIZE + ((CELL_SIZE - i) / 2) + i,
+                OFFSET + row * CELL_SIZE + uLine
+            );
+            uLine++;
+        }
     }
     if (actorMapDef.direction == "down") {
-        line(OFFSET + col * CELL_SIZE + (CELL_SIZE / 2), OFFSET + row * CELL_SIZE + CELL_SIZE , OFFSET + col * CELL_SIZE + (CELL_SIZE / 2), OFFSET + row * CELL_SIZE + CELL_SIZE - 5)
+        var uLine = 8;
+        for (var i = 15 ; i >= 1 ; i -= 2) {
+            line(
+                OFFSET + col * CELL_SIZE + ((CELL_SIZE - i) / 2),
+                OFFSET + row * CELL_SIZE + CELL_SIZE - uLine ,
+                OFFSET + col * CELL_SIZE + ((CELL_SIZE - i) / 2) + i,
+                OFFSET + row * CELL_SIZE + CELL_SIZE - uLine
+            );
+            uLine--;
+        }
     }
     if (actorMapDef.direction == "left") {
-        line(OFFSET + col * CELL_SIZE, OFFSET + row * CELL_SIZE + (CELL_SIZE / 2) , OFFSET + col * CELL_SIZE + 5, OFFSET + row * CELL_SIZE + (CELL_SIZE / 2))
+        var uLine = 8;
+        for (var i = 15 ; i >= 1 ; i -= 2) {
+            line(
+                OFFSET + col * CELL_SIZE + uLine,
+                OFFSET + row * CELL_SIZE + ((CELL_SIZE - i) / 2) ,
+                OFFSET + col * CELL_SIZE + uLine,
+                OFFSET + row * CELL_SIZE + ((CELL_SIZE - i) / 2) + i
+            );
+            uLine--;
+        }
     }
     if (actorMapDef.direction == "right") {
-        line(OFFSET + col * CELL_SIZE + CELL_SIZE, OFFSET + row * CELL_SIZE + (CELL_SIZE / 2) , OFFSET + col * CELL_SIZE + CELL_SIZE - 5, OFFSET + row * CELL_SIZE + (CELL_SIZE / 2))
+        var uLine = 0;
+        for (var i = 1 ; i <= 15 ; i += 2) {
+            line(
+                OFFSET + col * CELL_SIZE + CELL_SIZE - uLine,
+                OFFSET + row * CELL_SIZE + ((CELL_SIZE - i) / 2) ,
+                OFFSET + col * CELL_SIZE + CELL_SIZE - uLine,
+                OFFSET + row * CELL_SIZE + ((CELL_SIZE - i) / 2) + i
+            );
+            uLine++;
+        }
     }
 }
 

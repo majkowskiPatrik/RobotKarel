@@ -1,11 +1,7 @@
 RobotKarel::Application.routes.draw do
   resources :actors
-
   resources :simulations
-
   resources :maps
-
-  resources :users
 
   match 'maps/:id/get_map' => 'maps#get_map'
   match 'maps/:id/save_map' => 'maps#save_map'
@@ -17,10 +13,7 @@ RobotKarel::Application.routes.draw do
   match 'simulations/:id/watch' => 'simulations#watch'
   match 'simulations/:id/get_initial_state' => 'simulations#get_initial_state'
   match 'simulations/:id/get_actors' => 'simulations#get_actors'
-  match 'actors/:id/get_source_code' => 'actors#get_source_code'
-
-
-
+  match 'actors/:id/get_properties' => 'actors#get_properties'
 
   # match 'test/lol' => 'test#lol'
   # The priority is based upon order of creation:
@@ -72,7 +65,7 @@ RobotKarel::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  match '/' => 'help#welcome'
 
   # See how all your routes lay out with "rake routes"
 

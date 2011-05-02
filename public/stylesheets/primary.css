@@ -1,3 +1,4 @@
+/*
 #menu {
     float:left;
 
@@ -5,7 +6,7 @@
 #main {
     float:left;
 }
-
+*/
 #player-canvas {
     float:left;
 
@@ -16,6 +17,14 @@
 
 .step-textbox {
     width: 30px;
+}
+
+.small-textbox {
+    width: 150px;
+}
+
+.big-textbox {
+    width: 250px;
 }
 
 #source-show-content {

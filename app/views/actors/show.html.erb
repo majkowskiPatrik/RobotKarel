@@ -1,15 +1,22 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @actor.name %>
 </p>
 
 <p>
-  <b>Source code:</b>
-  <%= @actor.source_code %>
+  <b>Description:</b>
+  <%= @actor.name %>
 </p>
 
+<p>
+  <b>Source code:</b><br />
+  <%= text_area_tag("source_code", @actor.source_code, :size => "80x20", :disabled => true) %>
+</p>
+
+<p>
+  <b>Static code:</b><br />
+  <%= text_area_tag("source_code", @actor.static_code, :size => "80x20", :disabled => true) %>
+</p>
 
 <%= link_to 'Edit', edit_actor_path(@actor) %> |
 <%= link_to 'Back', actors_path %>
