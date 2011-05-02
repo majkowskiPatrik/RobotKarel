@@ -1,0 +1,45 @@
+<%#
+# To change this template, choose Tools | Templates
+# and open the template in the editor.
+%>
+
+<h1>Welcome to RobotKarel online</h1>
+<p>Some quick tips to get you started:</p>
+<ol>
+  <li>Use <%= link_to "Map templates", :controller => "maps", :action => "index" %> to manage map templates that will be used as a base for simulation. You can create a new map or edit existing.<br />
+    <ul>
+      <li>Right click in editor on canvas to select different brushes</li>
+      <li>Left click in editor on canvas to place selected item</li>
+      <li>Map gets saved automatically on leaving the editor</li>
+    </ul>
+  </li>
+  <li>Use <%= link_to "Actor templates", :controller => "actors", :action => "index" %> to manage actor templates.</li>
+  <li>Use <%= link_to "Simulations", :controller => "simulations", :action => "index" %> to simulate those actors on map<br />
+    <ol>
+      <li>Create a simulation, select its name and map</li>
+      <li>Place some actors and other objects in it<br />
+        <ul>
+          <li>Right click on canvas to place various item</li>
+          <li>Right click on item to remove it / modify its properties</li>
+          <li>Data gets saved automatically on leaving the editor</li>
+        </ul>
+      </li>
+      <li>Press Watch function on that simulation <br />
+        <ul>
+          <li>Firstly, you would need to simulate some number of steps, say 50</li>
+          <li>Use AutoPlay checkbox, + and - buttons or directly enter step number to quickly rewind simulation result</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<!--
+<h2>Simulation life-cycle</h2>
+<ol>
+  <li>User creates a simulation, gives it name</li>
+  <li>Simulation is created, but it contains only map. User needs to place actors and other objects (markers) on it.</li>
+  <li>Simulation gets simulated for a requested number of simulation steps</li>
+  <li>User watches the result of a simulation</li>
+</ol>
+-->
